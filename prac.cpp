@@ -24,5 +24,5 @@ using namespace nspace;
  }
  void fun()
  {
-    //std::cout << " " <<  x;
+    std::cout << " " <<  x;
  }
