@@ -5,6 +5,7 @@ using namespace std;
 
 class mat;
 
+
 class vect
 {
     int v[3];
@@ -32,7 +33,7 @@ class mat
     public :
     void initialize()
     {
-        cout<<"enter elements"<<endl;
+        cout<<"enter elements";
         for(int i=0;i<3;i++)
         {
             for(int j=0;j<3;j++)
