@@ -15,7 +15,7 @@ void change_name(char name[])
 
 void change_age(Person * p)
 {
-   p->age=31;
+   p.age=31;
 }
 int main()
 {
