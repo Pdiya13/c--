@@ -1,50 +1,87 @@
+//get student name and marks as input and sort the list as per the total marks
+
 #include<iostream>
-class Complex{
-    float re;
-    float im;
-public:
-    Complex(float x = 0, float y = 0);
-    Complex(const Complex &c){
-        std::cout << "Copy " << std::endl;
-        re = c.re;
-        im = c.im;
+#include<string>
+
+using namespace std;
+
+class student
+{
+    string name;
+    int a[5];
+    int total=0;
+
+    public :
+
+    void get_data();
+    void put_data();
+    void sort(student *s[],int n);
+    void find_total(){
+        for(int i=0;i<5;i++){
+            total+=a[i];
+        }
     }
-    Complex add(Complex c);
-    void print();
 };
-Complex::Complex(float x, float y){
-    std::cout << "Constructor " << std::endl;
-    re = x;
-    im = y;
+
+void student::get_data()
+{
+    cout<<"enter name of the student:";
+    cin>>name;
+    cout<<"enter marks of 5 subjects:";
+    for(int i=0;i<5;i++)
+    {
+        cin>>a[i];
+    }
 }
-Complex Complex::add(Complex c){
-    re += c.re;
-    im += c.im;
-    return *this;
+
+void student::put_data()
+{
+    cout<<"name :"<<name<<endl;
+    cout<<"marks of 5 subject is : ";
+    for(int i=0;i<5;i++)
+    {
+        cout<<a[i];
+    }
+    cout<<endl;
+    cout<<"total marks is :"<<total;
 }
-void Complex::print(){
-    std::cout << re << " + j";
-    std::cout << im << std::endl;
+
+void student::sort(student * s[] ,int n)
+{
+    student *a;
+    for(int i=0;i<n;i++){
+        for(int j=i+1;j<n;j++)
+        {
+            if(s[i]->total>s[j]->total){
+                a=s[i];
+                s[i]=s[j];
+                s[j]=a;
+            }
+        }
+    }
 }
-Complex c1; // Default initialization
 
 int main()
 {
-    std::cout << "main function 1\n";
-    Complex c2 = c1; // copy initialization
-    std::cout << "main function 2\n";
-    c2 = c1; // assignment, because object already exists
-    std::cout << "main function 3\n";
-    // With flag -fno-elide-constructors
-        // copy arg, copy return object to temp object
-        // copy temp object to c3
-    // Without flag -fno-elide-constructors
-        // copy arg, copy return object to c3
-    Complex c3 = c1.add(c2);
-    c3.print();
-    std::cout << "main function 4\n";
-    c3 = c1.add(c2);
-    std::cout << "main function 5\n";
-    c3.print();
-    return 0;
+    int n;
+    cout<<"enter a number of how many students detail you want to enter: ";
+    cin>>n;
+
+    student s[n];
+
+    for(int i=0;i<n;i++){
+        s[i].get_data();
+    }
+
+    for(int i=0;i<n;i++){
+        s[i].find_total();
+    }
+
+    student *p=&s[];
+    s[0].sort(p,n);
+
+    for(int i=0;i<n;i++){
+        s[i].put_data();
+    }
+
 }
